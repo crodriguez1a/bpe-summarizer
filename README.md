@@ -11,7 +11,7 @@ Inherently, the token size would also imply semantic meaningfulness. This summar
 
  ## Evaluation
 
- To evaluate the quality of the summarization, the project applied a [semantic similarity metric](https://www.tensorflow.org/api_docs/python/tf/keras/losses/cosine_similarity), to compare auto-summarized examples with human summaries from the [scisummnet dataset](https://cs.stanford.edu/~myasu/projects/scisumm_net/). Text was represented using [sentence-level embeddings](https://tfhub.dev/google/universal-sentence-encoder/4).
+ To evaluate the quality of the summarization, we apply a [semantic similarity metric](https://www.tensorflow.org/api_docs/python/tf/keras/losses/cosine_similarity), to compare auto-summarized examples with human summaries from the [scisummnet dataset](https://cs.stanford.edu/~myasu/projects/scisumm_net/). Text was represented using [sentence-level embeddings](https://tfhub.dev/google/universal-sentence-encoder/4).
 
  ![BART/BPE](summarizer/validation/bart_comparison.png)
 <p style="text-align: center;"><small>BPE / Bart</small></p>
