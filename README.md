@@ -11,10 +11,10 @@ Inherently, the token size would also imply semantic meaningfulness. This summar
 
  ## Evaluation
 
- The project applied [semantic similarity metric](https://www.tensorflow.org/api_docs/python/tf/keras/losses/cosine_similarity), to compare auto-summarized examples with human summaries from the [scisummnet dataset](https://cs.stanford.edu/~myasu/projects/scisumm_net/).
+ To evaluate the quality of the summarization, the project applied a [semantic similarity metric](https://www.tensorflow.org/api_docs/python/tf/keras/losses/cosine_similarity), to compare auto-summarized examples with human summaries from the [scisummnet dataset](https://cs.stanford.edu/~myasu/projects/scisumm_net/). Text was represented using [sentence-level embeddings](https://tfhub.dev/google/universal-sentence-encoder/4).
 
  ![BART/BPE](summarizer/validation/bart_comparison.png)
- > BPE / BART
+<p style="text-align: center;"><small>BPE / Bart</small></p>
 
  **References:**
  - [Language Models are Unsupervised Multitask Learners, Radford, et.al](paper/language_models_are_unsupervised_multitask_learners.pdf)
