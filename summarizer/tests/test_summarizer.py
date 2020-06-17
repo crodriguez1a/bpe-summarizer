@@ -1,4 +1,5 @@
 import re
+
 import pytest
 
 from summarizer.summarizer import bpe_summarize
