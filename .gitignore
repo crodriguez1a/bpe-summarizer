@@ -1,0 +1,10 @@
+__pycache__/
+.pytest_cache/
+.ipynb_checkpoints
+data/
+.DS_Store
+.mypy_cache/
+
+paper/notes.md
+tfhub/
+*.bin
