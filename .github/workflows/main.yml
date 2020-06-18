@@ -47,6 +47,9 @@ jobs:
       - name: MyPy
         run: poetry run mypy summarizer/
 
+      - name: Flake8
+        run: poetry run flake8 summarizer/ --max-line-length 99
+
       - name: Test with pytest
         env:
           DJANGO_SETTINGS_MODULE: project.settings

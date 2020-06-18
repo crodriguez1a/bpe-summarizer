@@ -1,9 +1,10 @@
 import logging
-import re
 
 import numpy as np
 from nltk.tokenize import PunktSentenceTokenizer
 from transformers import GPT2Tokenizer
+
+from .utils import remove_stopwords
 
 logger = logging.getLogger()
 
@@ -15,7 +16,7 @@ def bpe_summarize(document: str, percentile: float = 99.0) -> str:
     sentences: list = sentencizer.tokenize(document)
 
     # find thresholds relative to all sentences
-    tokenized: list = [(i, tokenizer.encode(i)) for i in sentences]
+    tokenized: list = [(i, tokenizer.encode(remove_stopwords(i))) for i in sentences]
     group: list = np.concatenate([i for _, i in tokenized]).ravel().tolist()
 
     # find percentile
@@ -39,3 +40,10 @@ def bpe_summarize(document: str, percentile: float = 99.0) -> str:
     logger.debug(f"Pruned sentences: {pruned}")
 
     return summarized or document
+
+
+if __name__ == "__main__":
+    blob = "The most important part of this sentence is here. I frost apples. Bannas whwere foo."
+    print(remove_stopwords(blob))
+    result = bpe_summarize(blob)
+    print(result)
