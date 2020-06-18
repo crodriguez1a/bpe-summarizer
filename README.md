@@ -1,6 +1,6 @@
 ## Description
 
-This summarizer attempts to leverage BPE tokenization and the GPT2 vocabulary to filter text by semantic meaningfulness.
+This summarizer attempts to leverage Byte Pair Encoding (BPE) tokenization and the GPT2 vocabulary to filter text by semantic meaningfulness.
 
 BPE text representation is a subword level approach to tokenization which aims to efficiently reuse parts of words while retaining semantic value.
 
