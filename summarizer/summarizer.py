@@ -2,13 +2,13 @@ import logging
 
 import numpy as np
 from nltk.tokenize import PunktSentenceTokenizer
-from transformers import GPT2Tokenizer
+from transformers import BartTokenizer
 
 from .utils import remove_stopwords
 
 logger = logging.getLogger()
 
-tokenizer: GPT2Tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
+tokenizer: BartTokenizer = BartTokenizer.from_pretrained("facebook/bart-large")
 sentencizer: PunktSentenceTokenizer = PunktSentenceTokenizer()
 
 
