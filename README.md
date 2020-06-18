@@ -6,7 +6,7 @@ BPE text representation is a subword level approach to tokenization which aims t
 
 The algorithm is based on the frequency of n-gram pairs. More frequent pairs are represented by larger tokens.
 
-Inherently, the token size would also imply semantic meaningfulness. This summarization approach intends to surface the most meaningful sentences with comparing token values.
+This project explored the assumption that token size correlates strongly to semantic meaningfulness. This summarization approach intends to surface the most meaningful sentences with comparing token values and retaining sentences from the original text that included meaningful tokens within a specified percentile.
 
 ## Usage
 
@@ -50,7 +50,7 @@ A set of dependency structures used for training and testing the parser is obtai
 
 ## Evaluation
 
-To evaluate the quality of the summarization, we apply a [semantic similarity metric](https://www.tensorflow.org/api_docs/python/tf/keras/losses/cosine_similarity), to compare auto-summarized examples with human summaries from the [scisummnet dataset](https://cs.stanford.edu/~myasu/projects/scisumm_net/). Text was represented using [sentence-level embeddings](https://tfhub.dev/google/universal-sentence-encoder/4). Figure 1. charts the results from BPE as compared to [Bart](https://huggingface.co/transformers/model_doc/bart.html). BPE completed summarization in less than one second as compared to Bart's 15 minutes over 100 samples.
+To evaluate the quality of the summarization, we apply a [semantic similarity metric](https://www.tensorflow.org/api_docs/python/tf/keras/losses/cosine_similarity), to compare auto-summarized examples with human summaries from the [scisummnet dataset](https://cs.stanford.edu/~myasu/projects/scisumm_net/). Text was represented using [sentence-level embeddings](https://tfhub.dev/google/universal-sentence-encoder/4). Figure 1. charts the results from BPE as compared to [Bart](https://huggingface.co/transformers/model_doc/bart.html). BPE performed competitively and completed summarization in one one-hundredth of a second as compared to Bart's 55 seconds over 100 samples (CPU).
 
 ![BART/BPE](summarizer/validation/bart_comparison.png)
 <p style="text-align: center;"><small>Fig1. BPE / Bart</small></p>

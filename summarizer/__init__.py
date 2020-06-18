@@ -1,1 +1,1 @@
-from .summarizer import bpe_summarize
+from .summarizer import bpe_summarize, sentencizer
