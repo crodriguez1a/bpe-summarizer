@@ -2,17 +2,21 @@ import logging
 
 import numpy as np
 from nltk.tokenize import PunktSentenceTokenizer
-from transformers import BartTokenizer
+from transformers import BartTokenizer, PreTrainedTokenizer
 
 from .utils import remove_stopwords
 
 logger = logging.getLogger()
 
-tokenizer: BartTokenizer = BartTokenizer.from_pretrained("facebook/bart-large")
+bart_tokenizer: BartTokenizer = BartTokenizer.from_pretrained("facebook/bart-large")
 sentencizer: PunktSentenceTokenizer = PunktSentenceTokenizer()
 
 
-def bpe_summarize(document: str, percentile: float = 99.0) -> str:
+def bpe_summarize(
+    document: str,
+    percentile: float = 99.0,
+    tokenizer: PreTrainedTokenizer = bart_tokenizer,
+) -> str:
     sentences: list = sentencizer.tokenize(document)
 
     # find thresholds relative to all sentences
@@ -40,10 +44,3 @@ def bpe_summarize(document: str, percentile: float = 99.0) -> str:
     logger.debug(f"Pruned sentences: {pruned}")
 
     return summarized or document
-
-
-if __name__ == "__main__":
-    blob = "The most important part of this sentence is here. I frost apples. Bannas whwere foo."
-    print(remove_stopwords(blob))
-    result = bpe_summarize(blob)
-    print(result)

@@ -1,0 +1,3 @@
+[flake8]
+ignore = F401, E501
+exclude = summarizer/__init__.py, summarizer/validation/__init__.py

@@ -8,3 +8,5 @@ data/
 paper/notes.md
 tfhub/
 *.bin
+
+notebooks/*_experiment.ipynb
