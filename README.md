@@ -10,14 +10,14 @@ This project explored the assumption that token size correlates strongly to sema
 
 ## Install
 
-tfhub
-
+```
 pip install bpe_summarizer
+```
 
 ## Usage
 
 ```
-from summarizer import bpe_summarize
+from bpe_summarizer import bpe_summarize
 
 bpe_summarize(article, percentile=99)
 ```
@@ -58,7 +58,7 @@ A set of dependency structures used for training and testing the parser is obtai
 
 To evaluate the quality of the summarization, we apply a [semantic similarity metric](https://www.tensorflow.org/api_docs/python/tf/keras/losses/cosine_similarity), to compare auto-summarized examples with human summaries from the [scisummnet dataset](https://cs.stanford.edu/~myasu/projects/scisumm_net/). Text was represented using [sentence-level embeddings](https://tfhub.dev/google/universal-sentence-encoder/4). Figure 1. charts the results from the BPE Summarizer as compared to [widely used](https://huggingface.co/transformers/model_doc/bart.html) summarization techniques. It performed competitively and completed summarization in one one-hundredth of a second as compared to 55 seconds* over 100 samples.
 
-![Side-by-side with widely used summarizer](summarizer/validation/hf_bart_comparison.png)
+![Side-by-side with widely used summarizer](notebooks/hf_bart_comparison.png)
 <p style="text-align: center;"><small>Fig1. Evaluation alongside a widely used summarizer</small></p>
 
 <small>\*Performance evaluation was done using a CPU, and the competitive technique was applied after stripping down to use only the [summarization component](https://github.com/huggingface/transformers/blob/70bc3ead4f0b08e8cadd1805ada2a22f0c302399/src/transformers/pipelines.py#L1476).</small>
