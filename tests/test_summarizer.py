@@ -1,4 +1,4 @@
-from summarizer import bpe_summarize
+from src.bpe_summarizer import bpe_summarize
 
 
 def test_small_text():

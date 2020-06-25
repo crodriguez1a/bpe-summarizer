@@ -8,6 +8,12 @@ The algorithm is based on the frequency of n-gram pairs. More frequent pairs are
 
 This project explored the assumption that token size correlates strongly to semantic meaningfulness. This summarization approach intends to surface the most meaningful sentences with comparing token values and retaining sentences from the original text that included meaningful tokens within a specified percentile.
 
+## Install
+
+tfhub
+
+pip install bpe_summarizer
+
 ## Usage
 
 ```

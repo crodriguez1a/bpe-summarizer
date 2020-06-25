@@ -10,3 +10,5 @@ tfhub/
 *.bin
 
 notebooks/*_experiment.ipynb
+
+dist/
