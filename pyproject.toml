@@ -7,6 +7,7 @@ license = "MIT"
 readme = "README.md"
 repository = "https://github.com/crodriguez1a/bpe-summarizer"
 homepage = "https://github.com/crodriguez1a/bpe-summarizer"
+include = ["src/nltk_data/corpora/stopwords/english"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
