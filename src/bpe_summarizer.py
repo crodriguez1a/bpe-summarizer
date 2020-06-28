@@ -33,14 +33,16 @@ def bpe_summarize(
     result: list = []
     pruned: list = []
     for sentence, tokens in tokenized:
-        if np.percentile(np.array(tokens), percentile) >= group_pk:
-            result.append((sentence, np.std(tokens)))
+        top_pk: float = np.percentile(np.array(tokens), percentile)
+        if top_pk >= group_pk:
+            result.append((sentence, top_pk))
         else:
             # keep pruned sentences for debugging
-            pruned.append((sentence, np.std(tokens)))
+            pruned.append((sentence, top_pk))
 
     summarized: str = " ".join([r for r, _ in result])
 
+    logger.info(f"Summarization: {summarized}")
     logger.debug(f"Pruned sentences: {pruned}")
 
     return summarized or document
