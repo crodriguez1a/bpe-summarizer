@@ -13,7 +13,7 @@ This project explored the assumption that token size correlates strongly to sema
 ## Install
 
 ```
-pip install bpe_summarizer
+pip install bpe-summarizer
 ```
 
 ## Usage
