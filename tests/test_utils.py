@@ -1,4 +1,4 @@
-from summarizer.utils import STOPWORDS, remove_stopwords
+from src.utils import STOPWORDS, remove_stopwords
 
 
 def test_remove_stopwords():

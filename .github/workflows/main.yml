@@ -39,16 +39,16 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
 
       - name: Black
-        run: poetry run black . --check
+        run: poetry run black src/ --check
 
       # - name: iSort
       #   run: poetry run isort --check
 
       - name: MyPy
-        run: poetry run mypy summarizer/
+        run: poetry run mypy src/
 
       - name: Flake8
-        run: poetry run flake8 summarizer/ --max-line-length 99
+        run: poetry run flake8 src/ --max-line-length 99
 
       - name: Test with pytest
         env:

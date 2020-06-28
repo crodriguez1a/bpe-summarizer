@@ -1,6 +1,11 @@
+import os
 import re
 
+import nltk
 from nltk.corpus import stopwords
+
+nltk.data.path.append("src/nltk_data/")
+
 
 STOPWORDS: set = set(stopwords.words("english"))
 
