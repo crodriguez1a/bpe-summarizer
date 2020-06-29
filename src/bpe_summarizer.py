@@ -4,7 +4,7 @@ import numpy as np
 from nltk.tokenize import PunktSentenceTokenizer
 from transformers import BartTokenizer, PreTrainedTokenizer
 
-from .utils import remove_stopwords
+from src.utils import remove_stopwords
 
 logger = logging.getLogger()
 

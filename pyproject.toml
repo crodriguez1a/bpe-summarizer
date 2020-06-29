@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "bpe-summarizer"
-version = "0.1.0"
+version = "0.1.1"
 description = "This summarizer attempts to leverage Byte Pair Encoding (BPE) tokenization and the Bart vocabulary to filter text by semantic meaningfulness."
 authors = ["crodriguez1a <crodriguez1a@gmail.com>"]
 license = "MIT"
