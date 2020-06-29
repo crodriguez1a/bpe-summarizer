@@ -4,8 +4,9 @@ import re
 import nltk
 from nltk.corpus import stopwords
 
-nltk.data.path.append("src/nltk_data/")
-
+dir_name = os.path.dirname(__file__)
+file_name = os.path.join(dir_name, "nltk_data/")
+nltk.data.path.append(file_name)
 
 STOPWORDS: set = set(stopwords.words("english"))
 
