@@ -13,7 +13,10 @@ logger = logging.getLogger()
 bart_tokenizer: BartTokenizer = BartTokenizer.from_pretrained("facebook/bart-large")
 sentencizer: PunktSentenceTokenizer = PunktSentenceTokenizer()
 
-def summarize_sentence(tokens: list, percentile: float, tokenizer: PreTrainedTokenizer) -> str:
+
+def summarize_sentence(
+    tokens: list, percentile: float, tokenizer: PreTrainedTokenizer
+) -> str:
     """For a single sentence, simply filter on the mean"""
     mn: float = np.mean(np.array(tokens))
     mn_percentile: float = stats.percentileofscore(tokens, mn)
@@ -26,6 +29,7 @@ def summarize_sentence(tokens: list, percentile: float, tokenizer: PreTrainedTok
     decoded: str = tokenizer.decode([t for t in tokens if t >= largest_threshold])
     decoded = re.sub("\s{2,}", " ", decoded)
     return decoded.strip()
+
 
 def bpe_summarize(
     document: str,
@@ -43,7 +47,9 @@ def bpe_summarize(
 
     # ensure the kth percentile is less than the max
     largest_threshold = np.max(group) - (np.max(group) * (100 - percentile))
-    group_threshold = group_threshold if group_threshold < np.max(group) else largest_threshold
+    group_threshold = (
+        group_threshold if group_threshold < np.max(group) else largest_threshold
+    )
 
     if len(tokenized) == 1:
         _, tokens = tokenized[0]
