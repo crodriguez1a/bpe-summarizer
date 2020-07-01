@@ -1,7 +1,9 @@
 import logging
+import re
 
 import numpy as np
 from nltk.tokenize import PunktSentenceTokenizer
+from scipy import stats
 from transformers import BartTokenizer, PreTrainedTokenizer
 
 from src.utils import remove_stopwords
@@ -11,6 +13,19 @@ logger = logging.getLogger()
 bart_tokenizer: BartTokenizer = BartTokenizer.from_pretrained("facebook/bart-large")
 sentencizer: PunktSentenceTokenizer = PunktSentenceTokenizer()
 
+def summarize_sentence(tokens: list, percentile: float, tokenizer: PreTrainedTokenizer) -> str:
+    """For a single sentence, simply filter on the mean"""
+    mn: float = np.mean(np.array(tokens))
+    mn_percentile: float = stats.percentileofscore(tokens, mn)
+    max_percentile = mn_percentile if percentile > mn_percentile else percentile
+
+    logger.debug(f"max_percentile={max_percentile}")
+
+    largest_threshold: float = np.percentile(np.array(tokens), max_percentile)
+
+    decoded: str = tokenizer.decode([t for t in tokens if t >= largest_threshold])
+    decoded = re.sub("\s{2,}", " ", decoded)
+    return decoded.strip()
 
 def bpe_summarize(
     document: str,
@@ -24,17 +39,21 @@ def bpe_summarize(
     group: list = np.concatenate([i for _, i in tokenized]).ravel().tolist()
 
     # find percentile
-    group_pk: float = np.percentile(np.array(group), percentile)
+    group_threshold: float = np.percentile(np.array(group), percentile)
 
     # ensure the kth percentile is less than the max
-    maxed_pk = np.max(group) - (np.max(group) * (100 - percentile))
-    group_pk = group_pk if group_pk < np.max(group) else maxed_pk
+    largest_threshold = np.max(group) - (np.max(group) * (100 - percentile))
+    group_threshold = group_threshold if group_threshold < np.max(group) else largest_threshold
+
+    if len(tokenized) == 1:
+        _, tokens = tokenized[0]
+        return summarize_sentence(tokens, percentile, tokenizer)
 
     result: list = []
     pruned: list = []
     for sentence, tokens in tokenized:
         top_pk: float = np.percentile(np.array(tokens), percentile)
-        if top_pk >= group_pk:
+        if top_pk >= group_threshold:
             result.append((sentence, top_pk))
         else:
             # keep pruned sentences for debugging
