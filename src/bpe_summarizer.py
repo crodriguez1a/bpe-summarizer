@@ -25,7 +25,7 @@ def summarize_sentence(
     logger.debug(f"max_percentile={max_percentile}")
 
     largest_threshold: float = np.percentile(np.array(tokens), round(max_percentile))
-    
+
     decoded: str = tokenizer.decode([t for t in tokens if t >= largest_threshold])
     decoded = re.sub(r"\s{2,}", " ", decoded)
     return decoded.strip()
