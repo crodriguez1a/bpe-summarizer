@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "bpe-summarizer"
-version = "0.1.3"
+version = "0.1.5"
 description = "This summarizer attempts to leverage Byte Pair Encoding (BPE) tokenization and the Bart vocabulary to filter text by semantic meaningfulness."
 authors = ["crodriguez1a <crodriguez1a@gmail.com>"]
 license = "MIT"
@@ -10,7 +10,7 @@ homepage = "https://github.com/crodriguez1a/bpe-summarizer"
 include = ["src/nltk_data/corpora/stopwords/english", "src/utils.py"]
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = ">=3.7,<3.9"
 transformers = "^2.11.0"
 nltk = "^3.5"
 
@@ -27,6 +27,8 @@ flake8 = "^3.8.3"
 torch = "^1.5.0"
 rouge = "^1.0.0"
 argparse = "^1.4.0"
+autoflake = "^1.3.1"
+pre-commit = "^2.6.0"
 
 [build-system]
 requires = ["poetry>=0.12"]

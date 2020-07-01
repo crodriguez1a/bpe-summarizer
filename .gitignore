@@ -12,3 +12,4 @@ tfhub/
 notebooks/*_experiment.ipynb
 
 dist/
+bpe_summarizer.egg-info
