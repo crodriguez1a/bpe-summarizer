@@ -29,12 +29,12 @@ bpe_summarize(article, percentile=99)
 Parameter|Definition|Default|Type
 --|--|--|--
 `document` | A text blob with sentences delineated by punctuation | `None` | `String`
-`percentile` | Tokens in the top kth percentile  will remain after summarization. This should value should be a percentage like `90` | `99` | `Float`
-`tokenizer` | A huggingface `PreTrainedTokenizer` instance that relies on byte-pair-encoding | `BartTokenizer.from_pretrained("facebook/bart-large")` | `transformers.PreTrainedTokenizer`
-`apply_intra_sentence` | If `True`, summarization will be applied to individual sentences and not just the document as a whole | `False` | `False`
-`intra_sentence_percentile`| When `apply_intra_sentence` is `True`, this percentile will be applied to individual sentences | k is `50` if k represents more than the percentile score of the mean of tokens, otherwise the percentile score of the mean is used | `Float`
+`percentile` | Sentences that include tokens in the top kth percentile  will remain after summarization | `99` | `Float`
+`tokenizer` | A [huggingface](https://github.com/huggingface/tokenizers) `PreTrainedTokenizer` instance that relies on byte-pair-encoding | `BartTokenizer.from_pretrained("facebook/bart-large")` | `transformers.PreTrainedTokenizer`
+`apply_intra_sentence` | If `True`, summarization will be applied at both the document level and the sentence level | `False` | `False`
+`intra_sentence_percentile`| When `apply_intra_sentence` is `True`, this percentile will be applied to individual sentences | `50`* | `Float`
 
-
+* *Note: `intra_sentence_percentile` is ignored if its value represents less than the percentile score of the mean of tokens, otherwise the percentile score of the mean is used.*
 
 ## Examples
 
