@@ -24,6 +24,18 @@ from bpe_summarizer import bpe_summarize
 bpe_summarize(article, percentile=99)
 ```
 
+## Parameters
+
+Parameter|Definition|Default|Type
+--|--|--|--
+`document` | A text blob with sentences delineated by punctuation | `None` | `String`
+`percentile` | Tokens in the top kth percentile  will remain after summarization. This should value should be a percentage like `90` | `99` | `Float`
+`tokenizer` | A huggingface `PreTrainedTokenizer` instance that relies on byte-pair-encoding | `BartTokenizer.from_pretrained("facebook/bart-large")` | `transformers.PreTrainedTokenizer`
+`apply_intra_sentence` | If `True`, summarization will be applied to individual sentences and not just the document as a whole | `False` | `False`
+`intra_sentence_percentile`| When `apply_intra_sentence` is `True`, this percentile will be applied to individual sentences | k is `50` if k represents more than the percentile score of the mean of tokens, otherwise the percentile score of the mean is used | `Float`
+
+
+
 ## Examples
 
 **Human Summary**
