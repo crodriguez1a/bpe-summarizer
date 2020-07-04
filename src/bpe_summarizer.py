@@ -16,7 +16,9 @@ def summarize_sentence(
 ) -> str:
     """For a single sentence, filter on the mean
     when the top kth percentile token is above the mean.
-    This rule should prevent meaningless summarization"""
+    This rule should prevent meaningless summarization
+    at the sentence level
+    """
 
     # find percentile of token that represents the mean of tokens
     mn_percentile: float = stats.percentileofscore(tokens, np.mean(np.array(tokens)))
@@ -36,6 +38,22 @@ def bpe_summarize(
     apply_intra_sentence: bool = False,
     intra_sentence_percentile: float = 50,
 ) -> str:
+    """This summarizer attempts to leverage Byte Pair Encoding (BPE) tokenization
+    with a pre-trained vocabulary to filter text by semantic meaningfulness.
+
+    Keyword arguments:
+    percentile == Sentences that include tokens in the top kth percentile  will
+    remain after summarization (default 99.0)
+
+    tokenizer == A PreTrainedTokenizer instance that relies on
+    byte-pair-encoding (default BartTokenizer)
+
+    apply_intra_sentence == If `True`, summarization will be applied at both the
+    document level and the sentence level (default False)
+
+    intra_sentence_percentile ==  When `apply_intra_sentence` is `True`, this
+    percentile will be applied to individual sentences (default 50.0)
+    """
     sentences: list = sentencizer.tokenize(document)
 
     # tokenize all sentences
