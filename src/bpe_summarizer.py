@@ -54,6 +54,7 @@ def bpe_summarize(
     intra_sentence_percentile ==  When `apply_intra_sentence` is `True`, this
     percentile will be applied to individual sentences (default 50.0)
     """
+    # parse sentences from document text
     sentences: list = sentencizer.tokenize(document)
 
     # tokenize all sentences
