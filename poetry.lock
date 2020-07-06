@@ -1234,9 +1234,8 @@ six = "*"
 tqdm = "*"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "SciPy: Scientific Library for Python"
-marker = "python_version >= \"3\""
 name = "scipy"
 optional = false
 python-versions = ">=3.5"
@@ -1597,7 +1596,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
-content-hash = "c34bbf83946225b467a712df3b14d4364b02fc3f8fe2f5ea0c76115f15862970"
+content-hash = "bcc91140a098bc77396e1fe2f9472b9974362f1d61d80f86cbec20e74b7d9eed"
 python-versions = ">=3.7,<3.9"
 
 [metadata.files]
