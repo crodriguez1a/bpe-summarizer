@@ -3,6 +3,7 @@ import re
 
 import nltk
 import numpy as np
+from nltk.corpus import stopwords
 from nltk.tokenize import PunktSentenceTokenizer
 from scipy import stats
 from transformers import BartTokenizer, PreTrainedTokenizer
@@ -189,6 +190,7 @@ STOPWORDS: set = {
     "wouldn't",
 }
 
+STOPWORDS: set = set(stopwords.words("english"))
 bart_tokenizer: BartTokenizer = BartTokenizer.from_pretrained("facebook/bart-large")
 sentencizer: PunktSentenceTokenizer = PunktSentenceTokenizer()
 
