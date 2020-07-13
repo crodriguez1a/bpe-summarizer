@@ -1,14 +1,27 @@
+import os
 import re
 
+import nltk
 import numpy as np
+from nltk.corpus import stopwords
 from nltk.tokenize import PunktSentenceTokenizer
 from scipy import stats
 from transformers import BartTokenizer, PreTrainedTokenizer
 
-from src.utils import remove_stopwords
+dir_name = os.path.dirname(__file__)
+file_name = os.path.join(dir_name, "nltk_data/")
+nltk.data.path.append(file_name)
 
+STOPWORDS: set = set(stopwords.words("english"))
 bart_tokenizer: BartTokenizer = BartTokenizer.from_pretrained("facebook/bart-large")
 sentencizer: PunktSentenceTokenizer = PunktSentenceTokenizer()
+
+
+def remove_stopwords(blob):
+    words = set(blob.split(" "))
+    stop_words_found = words.intersection(STOPWORDS)
+    pat = re.compile(f"({' | '.join(stop_words_found)})")
+    return re.sub(pat, " ", blob)
 
 
 def summarize_sentence(
