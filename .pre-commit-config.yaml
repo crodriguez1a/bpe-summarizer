@@ -1,0 +1,37 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.1.0
+    hooks:
+    - id: trailing-whitespace
+    - id: end-of-file-fixer
+    - id: check-docstring-first
+    - id: check-json
+    - id: check-added-large-files
+    - id: check-yaml
+    - id: debug-statements
+    - id: name-tests-test
+    - id: double-quote-string-fixer
+    - id: requirements-txt-fixer
+  - repo: local
+    hooks:
+      - id: mypy
+        name: mypy
+        stages: [commit]
+        language: system
+        entry: poetry run mypy
+        type: [python]
+        pass_filenames: true
+
+      - id: isort
+        name: isort
+        stages: [commit]
+        language: system
+        entry: poetry run isort
+        type: [python]
+
+      - id: flake8
+        name: flake8
+        stages: [commit]
+        language: system
+        entry: poetry run flake8 --max-line-length 99
+        type: [python]
