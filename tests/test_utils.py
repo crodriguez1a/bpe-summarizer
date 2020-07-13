@@ -1,4 +1,4 @@
-from src.utils import STOPWORDS, remove_stopwords
+from src.bpe_summarizer import STOPWORDS, remove_stopwords
 
 
 def test_remove_stopwords():
