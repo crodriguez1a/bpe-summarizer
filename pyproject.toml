@@ -10,10 +10,10 @@ homepage = "https://github.com/crodriguez1a/bpe-summarizer"
 include = ["src/nltk_data/corpora/stopwords/english", "src/utils.py"]
 
 [tool.poetry.dependencies]
-python = ">=3.7,<3.9"
+python = "^3.7"
 transformers = "^2.11.0"
 nltk = "^3.5"
-scipy = "1.4.1"
+scipy = "^1.4.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.4.3"
