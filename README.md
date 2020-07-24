@@ -18,7 +18,7 @@ pip install bpe-summarizer
 
 ## Usage
 
-```
+```python
 from bpe_summarizer import bpe_summarize
 
 bpe_summarize(article, percentile=99)
