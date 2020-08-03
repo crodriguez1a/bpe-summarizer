@@ -200,7 +200,7 @@ def remove_stopwords(blob):
 
 
 def summarize_sentence(
-    tokens: list, percentile: float, tokenizer: PreTrainedTokenizer
+    tokens: list, percentile: float, tokenizer: PreTrainedTokenizer, raw: str = ""
 ) -> str:
     """For a single sentence, filter on the mean
     when the top kth percentile token is above the mean.
@@ -216,7 +216,12 @@ def summarize_sentence(
     decoded: str = tokenizer.decode([t for t in tokens if t >= top_k_tkn])
 
     decoded = re.sub(r"\s{2,}", " ", decoded)
-    return decoded.strip()
+    decoded = decoded.strip()
+
+    if len(decoded) <= 2:
+        return raw
+
+    return decoded
 
 
 def bpe_summarize(
@@ -255,7 +260,7 @@ def bpe_summarize(
     # always summarize single sentence unless explicitly said not to
     if len(tokenized) == 1:
         _, tokens = tokenized[0]
-        return summarize_sentence(tokens, percentile, tokenizer)
+        return summarize_sentence(tokens, percentile, tokenizer, raw=document)
 
     # filter for top k sentences
     result: list = []
