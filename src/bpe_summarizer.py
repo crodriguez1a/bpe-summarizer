@@ -252,14 +252,7 @@ def bpe_summarize(
     # find the token that represents the top kth percentile for all sentences
     group_top_k_tkn: int = int(np.percentile(np.array(group), percentile))
 
-    # ensure the kth percentile is less than the max possible
-    mx_percentile: float = stats.percentileofscore(group, np.max(group))
-    mx_top_k_tkn: int = int(np.percentile(np.array(group), mx_percentile))
-    group_top_k_tkn = (
-        group_top_k_tkn if group_top_k_tkn < mx_top_k_tkn else mx_top_k_tkn
-    )
-
-    # always summarize single sentence
+    # always summarize single sentence unless explicitly said not to
     if len(tokenized) == 1:
         _, tokens = tokenized[0]
         return summarize_sentence(tokens, percentile, tokenizer)
@@ -267,9 +260,8 @@ def bpe_summarize(
     # filter for top k sentences
     result: list = []
     for sentence, tokens in tokenized:
-        top_k_tkn: int = int(np.percentile(np.array(tokens), percentile))
         # only append sentences that have tokens in the top k
-        if top_k_tkn >= group_top_k_tkn:
+        if max(tokens) >= group_top_k_tkn:
             result.append((sentence, tokens))
 
     # optionally, summarize individual sentences
