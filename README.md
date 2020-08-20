@@ -1,6 +1,7 @@
 ## BPE Summarizer
 
 ![CI](https://github.com/crodriguez1a/bpe-summarizer/workflows/CI/badge.svg?branch=master)
+[![Downloads](https://pepy.tech/badge/bpe-summarizer)](https://pepy.tech/project/bpe-summarizer)
 
 This summarizer attempts to leverage Byte Pair Encoding (BPE) tokenization and the Bart vocabulary to filter text by semantic meaningfulness.
 
